@@ -1,24 +1,26 @@
 class Solution {
     public String reverseWords(String s) {
         
-        s=s.trim();
-        StringBuffer sentence=new StringBuffer();
         Stack<String>st=new Stack<>();
+        s=s.trim();
         String word="";
         for(int i=0;i<s.length();i++)
         {
             char ch=s.charAt(i);
-            if(ch!=' ')
-                word+=ch;
-            else
+            if(ch==' ')
             {
-                if(word.length()>0)
+                if(word.length()!=0)
                     st.push(word);
                 word="";
             }
+            else
+                word+=ch;
         }
-        st.push(word);
-        word="";
+        if(word.length()!=0)
+            st.push(word);
+        
+        
+        StringBuffer sentence =new StringBuffer();
         
         while(!st.isEmpty())
         {
@@ -28,6 +30,7 @@ class Solution {
                 sentence.append(st.peek()+" ");
             st.pop();
         }
+        
         return sentence.toString();
     }
 }
