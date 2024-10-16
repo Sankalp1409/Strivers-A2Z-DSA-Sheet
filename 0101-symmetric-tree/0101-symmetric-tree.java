@@ -15,17 +15,17 @@
  */
 class Solution {
     
-    public boolean solve(TreeNode left, TreeNode right)
+    public boolean solve(TreeNode root1, TreeNode root2)
     {
-        if(left==null && right==null)
+        if(root1==null && root2==null)
             return true;
-        if(left!=null && right==null || left==null && right!=null)
+        if(root1!=null && root2==null || root1==null && root2!=null)
             return false;
         
-        boolean leftMirror=solve(left.right,right.left);
-        boolean rightMirror=solve(left.left,right.right);
+        boolean leftMirror=solve(root1.right,root2.left);
+        boolean rightMirror=solve(root1.left,root2.right);
         
-        if(leftMirror && rightMirror && left.val==right.val)
+        if(leftMirror && rightMirror && root1.val==root2.val)
             return true;
         return false;
     }
