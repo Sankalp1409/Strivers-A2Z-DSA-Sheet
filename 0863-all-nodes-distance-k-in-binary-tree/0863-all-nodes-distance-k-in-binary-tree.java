@@ -56,7 +56,7 @@ class Solution {
         while(!q.isEmpty())
         {
             int size=q.size();
-            
+            if(q.peek().dis>k) break;
             for(int i=0;i<size;i++)
             {
                 pair front=q.poll();
