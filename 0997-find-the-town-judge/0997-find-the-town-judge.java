@@ -8,19 +8,18 @@ class Solution {
             return -1;
         }
         int []indegree=new int[n+1];
-        int []outdegree=new int[n+1];
         
         for(int i=0;i<trust.length;i++)
         {
             int u=trust[i][0];
             int v=trust[i][1];
-            outdegree[u]++;
+            indegree[u]--;
             indegree[v]++;
         }
         
         for(int i=0;i<indegree.length;i++)
         {
-            if(indegree[i]==n-1 && outdegree[i]==0)
+            if(indegree[i]==n-1)
                 return i;
         }
         return -1;
