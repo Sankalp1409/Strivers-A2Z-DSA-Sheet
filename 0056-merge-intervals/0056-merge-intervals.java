@@ -8,28 +8,26 @@ class Solution {
     }
     
     public int[][] merge(int[][] intervals) {
-        
         Arrays.sort(intervals,new comp());
-        int n=intervals.length;
         Stack<int[]>st=new Stack<>();
-        st.push(intervals[0]);
-        for(int i=1;i<n;i++)
+        
+        for(int i=0;i<intervals.length;i++)
         {
-            if(!st.isEmpty() && st.peek()[1]>=intervals[i][0])
+            if(!st.isEmpty() && intervals[i][0]<=st.peek()[1])
             {
-                int []top=st.pop();
-                top[0]=Math.min(top[0],intervals[i][0]);
-                top[1]=Math.max(top[1],intervals[i][1]);
-                st.push(top);
+                int []temp=st.pop();
+                temp[0]=Math.min(temp[0],intervals[i][0]);
+                temp[1]=Math.max(temp[1],intervals[i][1]);
+                st.push(temp);
             }
             else
                 st.push(intervals[i]);
         }
         
-        int index=0;
-        int [][]ans=new int[st.size()][2];
+        int [][]ans=new int[st.size()][];
+        int i=st.size()-1;
         while(!st.isEmpty())
-            ans[index++]=st.pop();
+            ans[i--]=st.pop();
         return ans;
     }
 }
