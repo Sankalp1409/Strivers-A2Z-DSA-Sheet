@@ -1,10 +1,9 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        
         if(s.length()!=t.length())
             return false;
-        Map<Character,Character>mp=new HashMap<>();
         
+        Map<Character,Character>mp=new HashMap<>();
         for(int i=0;i<s.length();i++)
         {
             char ch1=s.charAt(i);
@@ -12,16 +11,16 @@ class Solution {
             
             if(mp.containsKey(ch1))
             {
-                if(ch2!=mp.get(ch1))
+                if(mp.get(ch1)!=ch2)
                     return false;
             }
-            else
-            {
+            else{
                 if(mp.containsValue(ch2))
                     return false;
                 else
                     mp.put(ch1,ch2);
             }
+                
         }
         return true;
     }
