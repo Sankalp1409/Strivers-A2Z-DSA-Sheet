@@ -2,6 +2,7 @@ class Solution {
     public String reverseWords(String s) {
         
         Stack<String>st=new Stack<>();
+        StringBuffer ansString =new StringBuffer();
         s=s.trim();
         String word="";
         for(int i=0;i<s.length();i++)
@@ -9,28 +10,23 @@ class Solution {
             char ch=s.charAt(i);
             if(ch==' ')
             {
-                if(word.length()!=0)
-                    st.push(word);
+                st.push(word);
                 word="";
             }
             else
                 word+=ch;
         }
+        
         if(word.length()!=0)
             st.push(word);
-        
-        
-        StringBuffer sentence =new StringBuffer();
-        
         while(!st.isEmpty())
         {
-            if(st.size()==1)
-                sentence.append(st.peek());
+            if(st.size()!=1 && st.peek().length()>0)
+                ansString.append(st.pop()+" ");
             else
-                sentence.append(st.peek()+" ");
-            st.pop();
+                ansString.append(st.pop());
         }
+        return ansString.toString();
         
-        return sentence.toString();
     }
 }
