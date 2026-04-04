@@ -1,13 +1,12 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        int col0=1;
-        int n=matrix.length;
-        int m=matrix[0].length;
         
-        // marking zero row & col
-        for(int i=0;i<n;i++)
+        int col0=1;
+        int row=matrix.length;
+        int col=matrix[0].length;
+        for(int i=0;i<row;i++)
         {
-            for(int j=0;j<m;j++)
+            for(int j=0;j<col;j++)
             {
                 if(matrix[i][j]==0)
                 {
@@ -20,10 +19,9 @@ class Solution {
             }
         }
 
-        // making non-zero to zero based on above marking
-        for(int i=1;i<n;i++)
+        for(int i=1;i<row;i++)
         {
-            for(int j=1;j<m;j++)
+            for(int j=1;j<col;j++)
             {
                 if(matrix[i][j]!=0)
                 {
@@ -33,15 +31,13 @@ class Solution {
             }
         }
 
-        // handling 0th row
-        for(int j=m-1;j>=0;j--)
+        for(int j=col-1;j>=0;j--)
         {
             if(matrix[0][j]!=0 && matrix[0][0]==0)
                 matrix[0][j]=0;
         }
 
-        // handling 0th col using col0 variable
-        for(int i=n-1;i>=0;i--)
+        for(int i=0;i<row;i++)
         {
             if(matrix[i][0]!=0 && col0==0)
                 matrix[i][0]=0;
